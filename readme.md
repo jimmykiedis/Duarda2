@@ -1,4 +1,4 @@
-# 🪄 Balançar da varinha
+# 🪄 Balança a minha varinha
 
 Um projeto web interativo onde o usuário utiliza o cursor do mouse como se fosse uma varinha mágica para executar alguns elencados feitiços inspirados no universo de Harry Potter.
 
@@ -76,6 +76,7 @@ Como evolução futura, pode ser adotado um algoritmo de reconhecimento de gesto
 │   │   └── app.css
 │   └── js/
 │       └── app.js
+│       └── dollar.js
 ├── assets/
 │   ├── images/
 │   └── sounds/

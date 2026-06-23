@@ -1,0 +1,10 @@
+{
+    "name": "Balança a minha varinha",
+    "private": "true",
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "node scripts/dev-server.mjs",
+        "start": "node scripts/dev-server.mjs"
+    }
+}
