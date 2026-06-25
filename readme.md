@@ -67,7 +67,6 @@ Como evolução futura, pode ser adotado um algoritmo de reconhecimento de gesto
 
 ```text
 /
-├── index.html
 ├── src/
 │   ├── assets/
 │   │   └── fonts/
@@ -77,10 +76,12 @@ Como evolução futura, pode ser adotado um algoritmo de reconhecimento de gesto
 │   └── js/
 │       └── app.js
 │       └── dollar.js
-├── assets/
-│   ├── images/
-│   └── sounds/
-└── README.md
+├── scripts/
+│   ├── dev-server.mjs
+├── index.html
+├── anotações.md
+├── README.md
+└── package.json
 ```
 
 ---

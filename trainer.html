@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer</title>
+    <style>
+        body { margin: 0; background: #111; color: #fff; font-family: monospace; }
+        canvas { display: block; cursor: crosshair; }
+        #info { position: fixed; top: 16px; left: 16px; font-size: 18px; }
+        #output { position: fixed; bottom: 0; left: 0; right: 0; background: #222;
+                  padding: 12px; font-size: 12px; max-height: 180px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div id="info">Feitiço atual: <strong id="feitico-atual">Lumus!</strong> | Amostra: <strong id="amostra">1</strong></div>
+    <canvas id="tela"></canvas>
+    <div id="output"><em>As amostras vão aparecer aqui...</em></div>
+    <script src="src/js/trainer.js"></script>
+</body>
+</html>
