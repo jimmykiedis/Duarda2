@@ -9,10 +9,10 @@
 - [x] **Passo 3 — Treinar os feitiços**
   - Registrar os templates dos gestos **Lumos** e **Revelio** no $1.
 
-- [ ] **Passo 4 — Tela preta**
+- [x] **Passo 4 — Tela preta**
   - CSS + canvas configurados para começar completamente escuro.
 
-- [ ] **Passo 5 — Feitiço Lumos 🕯️**
+- [x] **Passo 5 — Feitiço Lumos 🕯️**
   - Detectar o gesto → transformar o cursor numa "vela" → iluminar a tela ao redor do cursor com efeito radial.
 
 - [ ] **Passo 6 — O quadro oculto**
