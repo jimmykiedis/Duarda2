@@ -67,21 +67,30 @@ Como evolução futura, pode ser adotado um algoritmo de reconhecimento de gesto
 
 ```text
 /
+├── scripts/
+│   └──  dev-server.mjs
 ├── src/
 │   ├── assets/
-│   │   └── fonts/
+│   │   ├── cursor/
+│   │   │   ├──  movingWand.ani
+│   │   │   ├──  wand.ani
+│   │   │   └──  wand.cur
+│   │   ├── fonts/
 │   │   └── photos/
 │   ├── css/
 │   │   └── app.css
 │   └── js/
-│       └── app.js
-│       └── dollar.js
-├── scripts/
-│   ├── dev-server.mjs
-├── index.html
+│       ├── app.js
+│       ├── dollar.js
+│       ├── gestures.js
+│       └── trainer.js
+├── .gitignore
+├── amostrar.txt
 ├── anotações.md
+├── index.html
+├── package.json
 ├── README.md
-└── package.json
+└── trainer.html
 ```
 
 ---
