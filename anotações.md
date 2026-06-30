@@ -21,5 +21,5 @@
 - [x] **Passo 7 — Feitiço Revelio 🔮**
   - Detectar o gesto → revelar a foto da pessoa com animação.
 
-- [ ] **Passo 8 — Polish & Deploy**
+- [x] **Passo 8 — Polish & Deploy**
   - Ajustes de UX (sons, animações, responsividade mobile), subir no GitHub Pages.
