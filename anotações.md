@@ -15,11 +15,11 @@
 - [x] **Passo 5 — Feitiço Lumos 🕯️**
   - Detectar o gesto → transformar o cursor numa "vela" → iluminar a tela ao redor do cursor com efeito radial.
 
-- [ ] **Passo 6 — O quadro oculto**
+- [x] **Passo 6 — O quadro oculto**
   - Renderizar o texto escondido na escuridão, visível apenas quando a vela passa por cima.
 
-- [ ] **Passo 7 — Feitiço Revelio 🔮**
+- [x] **Passo 7 — Feitiço Revelio 🔮**
   - Detectar o gesto → revelar a foto da pessoa com animação.
 
-- [ ] **Passo 8 — Polish & Deploy**
+- [x] **Passo 8 — Polish & Deploy**
   - Ajustes de UX (sons, animações, responsividade mobile), subir no GitHub Pages.

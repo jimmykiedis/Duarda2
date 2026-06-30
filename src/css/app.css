@@ -24,3 +24,7 @@ canvas {
 #tela {
     z-index: 1;
 }
+#particulas {
+  z-index: 2;
+  pointer-events: none; /* ← não bloqueia cliques/toques */
+}
