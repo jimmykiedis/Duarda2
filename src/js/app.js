@@ -1,3 +1,4 @@
+// ── Seletores ────────────────────────────────────────
 const tela = document.getElementById('tela')
 const ctx = tela.getContext('2d')
 const fundo = document.getElementById('fundo')
@@ -5,21 +6,24 @@ const ctxFundo = fundo.getContext('2d')
 const reconhecedor = new DollarRecognizer()
 registrarFeiticos(reconhecedor)
 
+// ── Estado ───────────────────────────────────────────
 let lumusAtivo = false
 let revelioAtivo = false
-let mouse = {x:0, y:0}
+let mouse = { x: 0, y: 0 }
 let pontos = []
 let desenhando = false
 let opacidadeFoto = 0
+let cursorAnterior = { x: -1, y: -1 }
+
 const imgFoto = new Image()
 imgFoto.src = 'src/assets/photos/foto.png'
 
-// ── Configuração do Polaroid ─────────────────────────
+// ── Configuração ─────────────────────────────────────
 const CONFIG = {
   polaroid: {
     largura: 446,
     altura: 547,
-    anguloGraus: -8,        // ← ajuste fino aqui: negativo = anti-horário, positivo = horário
+    anguloGraus: -8,        // ← negativo = anti-horário, positivo = horário
     sombra: {
       cor: 'rgba(0,0,0,0.5)',
       blur: 20,
@@ -32,17 +36,26 @@ const CONFIG = {
     altura: 400,
     marginTop: 23,          // ← margem entre o topo do polaroid e a foto
   },
+  legenda: {
+    texto: 'adivinha quem é a pessoa mais lida e amada do mundo?', // ← edite aqui
+    fonte: 'FeelingLovely',
+    tamanho: 22,            // ← ajuste fino do tamanho
+    cor: '#333',            // ← cor do texto
+    marginBottom: 20,       // ← distância do texto até a borda inferior do polaroid
+  },
   revelio: {
-    velocidadeFade: 0.01,   // ← quão rápido a foto aparece (0.01 = lento, 0.05 = rápido)
+    velocidadeFade: 0.01,   // ← 0.01 = lento, 0.05 = rápido
   }
 }
 
+// ── Funções ──────────────────────────────────────────
 function desenharPolaroid() {
   const cx = fundo.width / 2
   const cy = fundo.height / 2
   const angulo = CONFIG.polaroid.anguloGraus * (Math.PI / 180)
   const { largura, altura } = CONFIG.polaroid
   const { marginTop, largura: lFoto, altura: aFoto } = CONFIG.foto
+  const { texto, fonte, tamanho, cor, marginBottom } = CONFIG.legenda
 
   ctxFundo.save()
   ctxFundo.translate(cx, cy)
@@ -58,7 +71,7 @@ function desenharPolaroid() {
   ctxFundo.fillStyle = '#fff'
   ctxFundo.fillRect(-largura / 2, -altura / 2, largura, altura)
 
-  // Remove sombra antes de desenhar a foto
+  // Remove sombra
   ctxFundo.shadowColor = 'transparent'
   ctxFundo.shadowBlur = 0
   ctxFundo.shadowOffsetX = 0
@@ -78,53 +91,53 @@ function desenharPolaroid() {
     ctxFundo.globalAlpha = 1
   }
 
+  // Legenda
+  ctxFundo.fillStyle = cor
+  ctxFundo.font = `${tamanho}px ${fonte}`
+  ctxFundo.textAlign = 'center'
+  ctxFundo.textBaseline = 'bottom'
+
+  const areaTexto = largura - 40
+  const palavras = texto.split(' ')
+  const linhas = []
+  let linhaAtual = ''
+
+  for (const palavra of palavras) {
+    const teste = linhaAtual ? `${linhaAtual} ${palavra}` : palavra
+    if (ctxFundo.measureText(teste).width > areaTexto) {
+      linhas.push(linhaAtual)
+      linhaAtual = palavra
+    } else {
+      linhaAtual = teste
+    }
+  }
+  linhas.push(linhaAtual)
+
+  const yBase = altura / 2 - marginBottom
+  linhas.reverse().forEach((linha, i) => {
+    ctxFundo.fillText(linha, 0, yBase - i * (tamanho + 4))
+  })
+
   ctxFundo.restore()
-}
-
-function redimencionar() {
-  const imagemSalva = ctx.getImageData(0,0, tela.width, tela.height)
-  
-  tela.width = window.innerWidth
-  tela.height = window.innerHeight
-  fundo.width = window.innerWidth
-  fundo.height = window.innerHeight
-
-  desenharFundo()
-
-  if (lumusAtivo) {
-    ctx.putImageData(imagemSalva, 0, 0)
-  }
-  else {
-    escurecer()
-  }
 }
 
 function desenharFundo() {
   ctxFundo.fillStyle = '#1a0a00'
   ctxFundo.fillRect(0, 0, fundo.width, fundo.height)
-
-  // Texto do quadro
-  ctxFundo.fillStyle = '#c8a96e'
-  ctxFundo.font = 'bold 36px serif'
-  ctxFundo.textAlign = 'center'
-  ctxFundo.fillText('Adivinha quem é a pessoa', fundo.width / 2, fundo.height / 2 - 30)
-  ctxFundo.fillText('mais lida e amada do mundo?', fundo.width / 2, fundo.height / 2 + 20)
-
-  // Polaroid
   desenharPolaroid()
 }
 
-function escurecer(){
+function escurecer() {
   ctx.fillStyle = '#000'
   ctx.fillRect(0, 0, tela.width, tela.height)
 }
 
-function iluminar(x, y){
+function iluminar(x, y) {
   ctx.globalCompositeOperation = 'destination-out'
 
   const gradiente = ctx.createRadialGradient(x, y, 0, x, y, 120)
-  gradiente.addColorStop(0, 'rgba(0, 0, 0, 1)')
-  gradiente.addColorStop(1, 'rgba(0, 0, 0, 0)')
+  gradiente.addColorStop(0, 'rgba(0,0,0,1)')
+  gradiente.addColorStop(1, 'rgba(0,0,0,0)')
 
   ctx.fillStyle = gradiente
   ctx.beginPath()
@@ -134,15 +147,29 @@ function iluminar(x, y){
   ctx.globalCompositeOperation = 'source-over'
 }
 
-let cursorAnterior = {x:-1, y:-1}
+function redimencionar() {
+  const imagemSalva = ctx.getImageData(0, 0, tela.width, tela.height)
+
+  tela.width = window.innerWidth
+  tela.height = window.innerHeight
+  fundo.width = window.innerWidth
+  fundo.height = window.innerHeight
+
+  desenharFundo()
+
+  if (lumusAtivo) {
+    ctx.putImageData(imagemSalva, 0, 0)
+  } else {
+    escurecer()
+  }
+}
 
 function loop() {
   requestAnimationFrame(loop)
 
-  // Animação do Revelio
   if (revelioAtivo && opacidadeFoto < 1) {
     opacidadeFoto = Math.min(1, opacidadeFoto + CONFIG.revelio.velocidadeFade)
-    desenharFundo()  // redesenha o fundo com a nova opacidade
+    desenharFundo()
   }
 
   if (!lumusAtivo) return
@@ -152,6 +179,7 @@ function loop() {
   cursorAnterior = { ...mouse }
 }
 
+// ── Eventos ──────────────────────────────────────────
 tela.addEventListener('mousemove', (e) => {
   mouse.x = e.clientX
   mouse.y = e.clientY
@@ -179,13 +207,23 @@ tela.addEventListener('mouseup', () => {
   }
 
   if (resultado.Name === 'Revelio!' && resultado.Score > 0.6) {
-  revelioAtivo = true
-  console.log('🔮 Revelio ativado!')
+    revelioAtivo = true
+    console.log('🔮 Revelio ativado!')
   }
 })
 
-desenharFundo()
-escurecer()
-redimencionar()
-loop()
 window.addEventListener('resize', redimencionar)
+
+// ── Inicialização (sempre por último) ────────────────
+new FontFace('FeelingLovely', "url('src/assets/fonts/Feeling%20Lovely.ttf')")
+  .load()
+  .then((fonte) => {
+    document.fonts.add(fonte)
+  })
+  .catch((err) => {
+    console.warn('Fonte não carregada, usando fallback:', err)
+  })
+  .finally(() => {
+    redimencionar()
+    loop()
+  })
