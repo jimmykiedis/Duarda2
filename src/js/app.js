@@ -4,6 +4,7 @@ const ctx = tela.getContext('2d')
 const fundo = document.getElementById('fundo')
 const ctxFundo = fundo.getContext('2d')
 const reconhecedor = new DollarRecognizer()
+const somFeitico = new Audio('src/assets/sounds/wizardSoundSpell.mp3')
 registrarFeiticos(reconhecedor)
 
 // ── Estado ───────────────────────────────────────────
@@ -147,6 +148,11 @@ function iluminar(x, y) {
   ctx.globalCompositeOperation = 'source-over'
 }
 
+function tocarSom() {
+  somFeitico.currentTime = 0
+  somFeitico.play()
+}
+
 function redimencionar() {
   const imagemSalva = ctx.getImageData(0, 0, tela.width, tela.height)
 
@@ -179,22 +185,36 @@ function loop() {
   cursorAnterior = { ...mouse }
 }
 
+function getPonto(e) {
+  if (e.touches && e.touches.length > 0) {
+    return { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  }
+  return { x: e.clientX, y: e.clientY }
+}
+
 // ── Eventos ──────────────────────────────────────────
-tela.addEventListener('mousemove', (e) => {
-  mouse.x = e.clientX
-  mouse.y = e.clientY
+function iniciarGesto(e) {
+  e.preventDefault()
+  const p = getPonto(e)
+  desenhando = true
+  pontos = [{ X: p.x, Y: p.y }]
+  mouse.x = p.x
+  mouse.y = p.y
+}
+
+function moverGesto(e) {
+  e.preventDefault()
+  const p = getPonto(e)
+  mouse.x = p.x
+  mouse.y = p.y
 
   if (desenhando) {
-    pontos.push({ X: e.clientX, Y: e.clientY })
+    pontos.push({ X: p.x, Y: p.y })
   }
-})
+}
 
-tela.addEventListener('mousedown', (e) => {
-  desenhando = true
-  pontos = [{ X: e.clientX, Y: e.clientY }]
-})
-
-tela.addEventListener('mouseup', () => {
+function finalizarGesto(e) {
+  e.preventDefault()
   desenhando = false
   if (pontos.length < 10) return
 
@@ -203,14 +223,26 @@ tela.addEventListener('mouseup', () => {
 
   if (resultado.Name === 'Lumus!' && resultado.Score > 0.6) {
     lumusAtivo = true
+    tocarSom()
     console.log('✨ Lumos Ativado!')
   }
 
   if (resultado.Name === 'Revelio!' && resultado.Score > 0.6) {
     revelioAtivo = true
+    tocarSom()
     console.log('🔮 Revelio ativado!')
   }
-})
+}
+
+// Mouse
+tela.addEventListener('mousedown', iniciarGesto)
+tela.addEventListener('mousemove', moverGesto)
+tela.addEventListener('mouseup', finalizarGesto)
+
+// Touch
+tela.addEventListener('touchstart', iniciarGesto, { passive: false })
+tela.addEventListener('touchmove', moverGesto, { passive: false })
+tela.addEventListener('touchend', finalizarGesto, { passive: false })
 
 window.addEventListener('resize', redimencionar)
 
