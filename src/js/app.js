@@ -24,6 +24,9 @@ let revelioFase = 'idle'   // 'idle' | 'brilhando' | 'revelando'
 const imgFoto = new Image()
 imgFoto.src = 'src/assets/photos/foto.png'
 
+const imgEstencil = new Image()
+imgEstencil.src = 'src/assets/photos/estencil.png'
+
 // ── Configuração ─────────────────────────────────────
 const CONFIG = {
   polaroid: {
@@ -43,7 +46,7 @@ const CONFIG = {
     marginTop: 23,
   },
   legenda: {
-    texto: 'adivinha quem é a pessoa mais lida e amada do mundo?', // ← edite aqui
+    texto: 'adivinha quem é a pessoa mais linda e amada do mundo?', // ← edite aqui
     fonte: 'FeelingLovely',
     tamanho: 22,
     cor: '#333',
@@ -228,6 +231,7 @@ function desenharPolaroid() {
   if (opacidadeFoto > 0) {
     ctxFundo.globalAlpha = opacidadeFoto
     ctxFundo.drawImage(imgFoto, fotoX, fotoY, lFoto, aFoto)
+    ctxFundo.drawImage(imgEstencil, fotoX, fotoY, lFoto, aFoto) // ← estêncil junto com a foto
     ctxFundo.globalAlpha = 1
   }
 
