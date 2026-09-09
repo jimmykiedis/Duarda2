@@ -1,5 +1,15 @@
 # 🪄 Balança a minha varinha
 
+<p align="center">
+  <a href="https://jimmykiedis.github.io/Duarda/">
+    <img src="https://img.shields.io/badge/❤️%20Live%20Demo-FF4B4B?style=for-the-badge" alt="Live Demo">
+  </a>
+  <br>
+  <em>Clique na imagem para acessar a demonstração.</em>
+</p>
+
+---
+
 Um projeto web interativo onde o usuário utiliza o cursor do mouse como se fosse uma varinha mágica para executar alguns elencados feitiços inspirados no universo de Harry Potter.
 
 O objetivo é reconhecer gestos desenhados pelo usuário e executar ações dentro da página de acordo com o feitiço identificado.
