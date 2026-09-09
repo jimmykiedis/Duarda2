@@ -1,7 +1,7 @@
 # 🪄 Balança a minha varinha
 
 <p align="center">
-  <a href="https://jimmykiedis.github.io/Duarda/">
+  <a href="https://jimmykiedis.github.io/Duarda2/">
     <img src="https://img.shields.io/badge/❤️%20Live%20Demo-FF4B4B?style=for-the-badge" alt="Live Demo">
   </a>
   <br>
