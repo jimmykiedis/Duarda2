@@ -43,7 +43,7 @@ O objetivo é reconhecer gestos desenhados pelo usuário e executar ações dent
 1. Clone ou baixe este repositório e abra a pasta do projeto no terminal.
 
 ```bash
-git clone https://github.com/jimmykiedis/EscapeButtonPrank.git
+git clone https://github.com/jimmykiedis/Duarda.git
 cd EscapeButtonPrank
 ```
 
