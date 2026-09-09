@@ -24,6 +24,40 @@ O objetivo é reconhecer gestos desenhados pelo usuário e executar ações dent
 * Exibir animações e efeitos visuais para aumentar a imersão.
 * Criar desafios interativos, como abrir cadeados, revelar mensagens ou ativar objetos mágicos.
 
+
+## ✨ Funcionalidades
+
+- 🪄 **Desenho de feitiços:** pressione e arraste o mouse ou o dedo pela tela para desenhar um gesto mágico.
+- 💡 **Lumos:** desenhe o gesto correspondente ao feitiço **Lumos!** para iluminar a tela com o cursor, revelando a área ao redor enquanto partículas mágicas acompanham o movimento.
+- 🔮 **Revelio:** desenhe o gesto correspondente ao feitiço **Revelio!** para ativar um brilho mágico sobre o polaroid e revelar gradualmente a fotografia escondida.
+- ✨ **Partículas mágicas:** estrelas e brilhos são gerados automaticamente enquanto o usuário desenha os feitiços.
+- 🔊 **Efeitos sonoros:** cada feitiço reconhecido reproduz um efeito sonoro para reforçar a experiência.
+- 📸 **Polaroid interativo:** a fotografia permanece inicialmente oculta e pode ser revelada através do feitiço **Revelio**.
+- 📱 **Suporte a dispositivos móveis:** os feitiços podem ser desenhados utilizando tanto mouse quanto toque na tela.
+- 🎨 **Experiência visual:** efeitos de iluminação, brilho, partículas, animações e tipografia personalizada criam uma experiência temática e imersiva. 
+
+---
+
+## 🛠 Como utilizar o repositório
+
+1. Clone ou baixe este repositório e abra a pasta do projeto no terminal.
+2. Verifique se o [Node.js](https://nodejs.org/) está instalado.
+3. Inicie o servidor local:
+
+  ```bash
+  npm run dev
+  ```
+
+  O projeto não possui dependências externas, portanto não é necessário executar `npm install`.
+
+4. Abra `http://127.0.0.1:4173` no navegador para acessar a aplicação principal.
+5. Para abrir o modo de treinamento dos gestos, acesse `http://127.0.0.1:4173/trainer.html`.
+6. Para personalizar o projeto, adicione ou substitua imagens em `src/assets/photos/` e ajuste os arquivos HTML, CSS ou JavaScript conforme necessário.
+
+O servidor local é recomendado porque garante o carregamento correto dos scripts, fontes, sons e do cursor personalizado. Não abra o `index.html` diretamente pelo navegador (`file://`), pois alguns recursos podem não funcionar corretamente.
+
+Para encerrar o servidor, volte ao terminal e pressione `Ctrl+C`.
+
 ---
 
 ## 🏗️ Estratégia de implementação
@@ -112,3 +146,10 @@ Como evolução futura, pode ser adotado um algoritmo de reconhecimento de gesto
 * Efeitos sonoros sincronizados.
 * Ranking de precisão dos gestos.
 * Modo tutorial para ensinar novos movimentos.
+
+---
+
+## 📄 Licença
+
+Sinta-se à vontade para usar, editar e compartilhar! Espalhe amor por onde for. 🫡
+
