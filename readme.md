@@ -41,6 +41,12 @@ O objetivo é reconhecer gestos desenhados pelo usuário e executar ações dent
 ## 🛠 Como utilizar o repositório
 
 1. Clone ou baixe este repositório e abra a pasta do projeto no terminal.
+
+```bash
+git clone https://github.com/jimmykiedis/EscapeButtonPrank.git
+cd EscapeButtonPrank
+```
+
 2. Verifique se o [Node.js](https://nodejs.org/) está instalado.
 3. Inicie o servidor local:
 
